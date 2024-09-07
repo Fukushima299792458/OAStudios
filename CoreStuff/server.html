@@ -77,7 +77,7 @@
         </table>
       </aside>
       <article>
-        <img src="/CoreStuff/public/assets/stealing.jpg" id="stealing" loading="lazy" />
+        <img src="public/assets/stealing.jpg" id="stealing" loading="lazy" />
       </article>
       <footer>
         <p>Copyright 2023 ObjectivistApe</p>
@@ -124,7 +124,7 @@
           document.getElementById('Blue2Brightness').disabled = data.RGB2Auto;
           document.getElementById('VAActive').innerHTML = `${((data.VAAuto && data.movement) || (!data.VAAuto && data.VAActive)) ? 'A' : 'Ina'}ctive`;
           document.getElementById('VAActive').disabled = data.VAAuto;
-          document.getElementById('stealing').src = "/CoreStuff/public/assets/stealing.jpg";
+          document.getElementById('stealing').src = "public/assets/stealing.jpg";
           clearTimeout(alarm.t);
           clearInterval(alarm.i);
           if (data.movement) {
