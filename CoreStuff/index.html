@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/css/styles.css" />
+    <title id="title">Not Connected to ESP32</title>
+  </head>
+  <body>
+    <div class="grid-container">
+      <h1 id="heading">Not Connected to ESP32</h1>
+      <aside>
+        <table>
+          <tr>
+            <th>Sensors</th>
+            <th>Status</th>
+            <th>Mode</th>
+          </tr>
+          <tr>
+            <td>Movement</td>
+            <td id="movement">Unknown</td>
+            <td>Input Only</td>
+          </tr>
+          <tr>
+            <td>Average Distance Change(UltraSonic)</td>
+            <td id="distance">No reference measurements</td>
+            <td>Input Only</td>
+          </tr>
+          <tr>
+            <td>Fast Distance Change(UltraSonic)</td>
+            <td id="ColdMovement">Unknown</td>
+            <td>Input Only</td>
+          </tr>
+          <tr>
+            <th>Outputs</th>
+            <th>Status</th>
+            <th>Mode</th>
+          </tr>
+          <tr>
+            <td>Buzzer</td>
+            <td><input type="range" min="50" max="14000" value='50' disabled onchange="data.Buzzer = parseInt(this.value); update();" id="Buzzer" /><br /><button disabled onclick="data.BuzzerStatus = !data.BuzzerStatus; update();" id="BuzzerStatus">Inactive</button></td>
+            <td><button onclick="data.BuzzerAuto = !data.BuzzerAuto; if (data.BuzzerAuto) {this.innerHTML = 'Auto';} else {this.innerHTML = 'Manual';} update();">Manual</button></td>
+          </tr>
+          <tr>
+            <td>Inbuilt Blue LED</td>
+            <td><input type="range" min="0" max="255" value="255" disabled onchange="data.InbuiltBrightness = parseInt(this.value); update();" id="InbuiltBrightness" /></td>
+            <!-- <td><u>Auto</u></td> -->
+            <th><button onclick="data.InbuiltAuto = !data.InbuiltAuto; if (data.InbuiltAuto) {this.innerHTML = 'Auto';} else {this.innerHTML = 'Manual';} update();">Auto</button></th>
+          </tr>
+          <tr>
+            <td>RGB1</td>
+            <td>
+              <ul>
+                <li>R: <input type="range" min="0" max="255" value="0" disabled onchange="data.Red1Brightness = parseInt(this.value); update();" id="Red1Brightness" /></li>
+                <li>G: <input type="range" min="0" max="255" value="255" disabled onchange="data.Green1Brightness = parseInt(this.value); update();" id="Green1Brightness" /></li>
+                <li>B: <input type="range" min="0" max="255" value="255" disabled onchange="data.Blue1Brightness = parseInt(this.value); update();" id="Blue1Brightness" /></li>
+              </ul>
+            </td>
+            <td><button onclick="data.RGB1Auto = !data.RGB1Auto; if (data.RGB1Auto) {this.innerHTML = 'Auto';} else {this.innerHTML = 'Manual';} update(); document.getElementById('Red1Brightness').disabled = data.RGB1Auto; document.getElementById('Green1Brightness').disabled = data.RGB1Auto; document.getElementById('Blue1Brightness').disabled = data.RGB1Auto;">Auto</button></td>
+          </tr>
+          <tr>
+            <td>RGB2</td>
+            <td>
+              <ul>
+                <li>R: <input type="range" min="0" max="255" value="0" disabled onchange="data.Red2Brightness = parseInt(this.value); update();" id="Red2Brightness" /></li>
+                <li>G: <input type="range" min="0" max="255" value="255" disabled onchange="data.Green2Brightness = parseInt(this.value); update();" id="Green2Brightness" /></li>
+                <li>B: <input type="range" min="0" max="255" value="255" disabled onchange="data.Blue2Brightness = parseInt(this.value); update();" id="Blue2Brightness" /></li>
+              </ul>
+            </td>
+            <td><button onclick="data.RGB2Auto = !data.RGB2Auto; if (data.RGB2Auto) {this.innerHTML = 'Auto';} else {this.innerHTML = 'Manual';} update(); document.getElementById('Red2Brightness').disabled = data.RGB2Auto; document.getElementById('Green2Brightness').disabled = data.RGB2Auto; document.getElementById('Blue2Brightness').disabled = data.RGB2Auto;">Auto</button></td>
+          </tr>
+          <tr>
+            <th><em><u>Virtual Alarm</u></em></th>
+            <td><button disabled id="VAActive" onclick="data.VAActive = !data.VAActive; update();">Inactive</button></td>
+            <th><button onclick="data.VAAuto = !data.VAAuto; if (data.VAAuto) {this.innerHTML = 'Auto';} else {this.innerHTML = 'Manual';} update();">Auto</button></th>
+          </tr>
+        </table>
+      </aside>
+      <article>
+        <img src="public/assets/stealing.jpg" id="stealing" loading="lazy" />
+      </article>
+      <footer>
+        <p>Copyright 2023 ObjectivistApe</p>
+      </footer>
+    </div>
+    <script>
+      let data;
+      let alarm = {t: null, i: null, u: null};
+      function update(get) {
+        if (!get) {
+          fetch(`/status?update=${JSON.stringify(data)}`);
+          document.getElementById('BuzzerStatus').innerHTML = `${(data.BuzzerStatus) ? 'A' : 'Ina'}ctive`;
+          document.getElementById('BuzzerStatus').disabled = data.BuzzerAuto;
+          document.getElementById('Buzzer').disabled = (data.BuzzerAuto || !data.BuzzerStatus);
+          document.getElementById('InbuiltBrightness').disabled = data.InbuiltAuto;
+          document.getElementById('Red1Brightness').disabled = data.RGB1Auto;
+          document.getElementById('Green1Brightness').disabled = data.RGB1Auto;
+          document.getElementById('Blue1Brightness').disabled = data.RGB1Auto;
+          document.getElementById('Red2Brightness').disabled = data.RGB2Auto;
+          document.getElementById('Green2Brightness').disabled = data.RGB2Auto;
+          document.getElementById('Blue2Brightness').disabled = data.RGB2Auto;
+          document.getElementById('VAActive').innerHTML = `${((data.VAAuto && data.movement) || (!data.VAAuto && data.VAActive)) ? 'A' : 'Ina'}ctive`;
+          document.getElementById('VAActive').disabled = data.VAAuto;
+          return;
+        }
+        fetch(`/data`).then((response) => response.json()).then((response) => {
+          data.movement = response.variables.movement;
+          data.distance = Math.abs(data.time - response.variables.Average)*0.01715;
+          data.time = response.variables.Average;
+          data.ColdMovement = response.variables.ColdMovement;
+          console.log(response.variables.Average, response.variables.Average*0.01715);
+          document.getElementById("movement").innerHTML = data.movement;
+          document.getElementById("distance").innerHTML = data.distance + " cm";
+          document.getElementById("ColdMovement").innerHTML = data.ColdMovement;
+          document.getElementById('BuzzerStatus').innerHTML = `${(data.BuzzerStatus) ? 'A' : 'Ina'}ctive`;
+          document.getElementById('BuzzerStatus').disabled = data.BuzzerAuto;
+          document.getElementById('Buzzer').disabled = (data.BuzzerAuto || !data.BuzzerStatus);
+          document.getElementById('InbuiltBrightness').disabled = data.InbuiltAuto;
+          document.getElementById('Red1Brightness').disabled = data.RGB1Auto;
+          document.getElementById('Green1Brightness').disabled = data.RGB1Auto;
+          document.getElementById('Blue1Brightness').disabled = data.RGB1Auto;
+          document.getElementById('Red2Brightness').disabled = data.RGB2Auto;
+          document.getElementById('Green2Brightness').disabled = data.RGB2Auto;
+          document.getElementById('Blue2Brightness').disabled = data.RGB2Auto;
+          document.getElementById('VAActive').innerHTML = `${((data.VAAuto && data.movement) || (!data.VAAuto && data.VAActive)) ? 'A' : 'Ina'}ctive`;
+          document.getElementById('VAActive').disabled = data.VAAuto;
+          document.getElementById('stealing').src = "public/assets/stealing.jpg";
+          clearTimeout(alarm.t);
+          clearInterval(alarm.i);
+          if (data.movement) {
+            document.getElementById("title").innerHTML = " ! ! ! MOVEMENT DETECTED ! ! ! ";
+            document.getElementById("heading").innerHTML = " ! ! ! MOVEMENT DETECTED ! ! ! ";
+            alarm.t = setTimeout(() => {document.getElementById("title").innerHTML = "MOVEMENT DETECTED";document.getElementById("heading").innerHTML = "MOVEMENT DETECTED";}, 500);
+            alarm.i = setInterval(() => {document.getElementById("title").innerHTML = " ! ! ! MOVEMENT DETECTED ! ! ! ";document.getElementById("heading").innerHTML = " ! ! ! MOVEMENT DETECTED ! ! ! ";alarm.t = setTimeout(() => {document.getElementById("title").innerHTML = "MOVEMENT DETECTED";document.getElementById("heading").innerHTML = "MOVEMENT DETECTED";}, 500);}, 1000);
+          } else {
+            if (data.distance > 5) {
+              document.getElementById("title").innerHTML = "Slow Cold Movement Detected";
+              document.getElementById("heading").innerHTML = "Slow Cold Movement Detected";
+            } else if (data.ColdMovement) {
+              document.getElementById("title").innerHTML = "Fast Cold Movement Detected";
+              document.getElementById("heading").innerHTML = "Fast Cold Movement Detected";
+            } else { 
+              document.getElementById("title").innerHTML = "Cool RaVE Games";
+              document.getElementById("heading").innerHTML = "Cool RaVE Games";
+              document.getElementById('stealing').src = "";
+            }
+          }
+          setTimeout(update, 10000, true);
+        });
+      }
+      fetch(`/data`).then((response) => response.json()).then((response) => {
+        data = response.variables;
+        document.getElementById("movement").innerHTML = data.movement;
+        document.getElementById("ColdMovement").innerHTML = data.ColdMovement;
+        document.getElementById('BuzzerStatus').innerHTML = `${(data.BuzzerStatus) ? 'A' : 'Ina'}ctive`;
+        document.getElementById('BuzzerStatus').disabled = data.BuzzerAuto;
+        document.getElementById('Buzzer').disabled = (data.BuzzerAuto || !data.BuzzerStatus);
+        document.getElementById('InbuiltBrightness').disabled = data.InbuiltAuto;
+        document.getElementById('Red1Brightness').disabled = data.RGB1Auto;
+        document.getElementById('Green1Brightness').disabled = data.RGB1Auto;
+        document.getElementById('Blue1Brightness').disabled = data.RGB1Auto;
+        document.getElementById('Red2Brightness').disabled = data.RGB2Auto;
+        document.getElementById('Green2Brightness').disabled = data.RGB2Auto;
+        document.getElementById('Blue2Brightness').disabled = data.RGB2Auto;        
+        document.getElementById('VAActive').innerHTML = `${((data.VAAuto && data.movement) || (!data.VAAuto && data.VAActive)) ? 'A' : 'Ina'}ctive`;
+        document.getElementById('VAActive').disabled = data.VAAuto;
+        clearTimeout(alarm.t);
+        clearInterval(alarm.i);
+        if (data.movement) {
+          document.getElementById("title").innerHTML = " ! ! ! MOVEMENT DETECTED ! ! ! ";
+          document.getElementById("heading").innerHTML = " ! ! ! MOVEMENT DETECTED ! ! ! ";
+          alarm.t = setTimeout(() => {document.getElementById("title").innerHTML = "MOVEMENT DETECTED";document.getElementById("heading").innerHTML = "MOVEMENT DETECTED";}, 500);
+          alarm.i = setInterval(() => {document.getElementById("title").innerHTML = " ! ! ! MOVEMENT DETECTED ! ! ! ";document.getElementById("heading").innerHTML = " ! ! ! MOVEMENT DETECTED ! ! ! ";alarm.t = setTimeout(() => {document.getElementById("title").innerHTML = "MOVEMENT DETECTED";document.getElementById("heading").innerHTML = "MOVEMENT DETECTED";}, 500);}, 1000);
+        } else {
+          if (data.ColdMovement) {
+            document.getElementById("title").innerHTML = "Fast Cold Movement Detected";
+            document.getElementById("heading").innerHTML = "Fast Cold Movement Detected";
+          } else {
+            document.getElementById("title").innerHTML = "Cool RaVE Games";
+            document.getElementById("heading").innerHTML = "Cool RaVE Games";
+          }
+        }
+        data.Buzzer = parseInt(document.getElementById('Buzzer').value);
+        data.InbuiltBrightness = parseInt(document.getElementById('InbuiltBrightness').value);
+        data.Red1Brightness = parseInt(document.getElementById('Red1Brightness').value);
+        data.Green1Brightness = parseInt(document.getElementById('Green1Brightness').value);
+        data.Blue1Brightness = parseInt(document.getElementById('Blue1Brightness').value);
+        data.Red2Brightness = parseInt(document.getElementById('Red2Brightness').value);
+        data.Green2Brightness = parseInt(document.getElementById('Green2Brightness').value);
+        data.Blue2Brightness = parseInt(document.getElementById('Blue2Brightness').value);
+        setTimeout(update, 10000, true);
+      });
+    </script>
+  </body>
+</html>

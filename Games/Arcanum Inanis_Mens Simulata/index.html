@@ -93,8 +93,10 @@
       } else {
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
-        canvas.style.width = "960px";
-        canvas.style.height = "600px";
+        canvas.style.width = innerWidth;
+        canvas.style.height = innerHeight;
+        canvas.width = innerWidth;
+        canvas.height = innerHeight-42;
       }
 
       loadingBar.style.display = "block";
@@ -106,6 +108,7 @@
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
           loadingBar.style.display = "none";
+          unityInstance.SetFullscreen(1);
           fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
           };

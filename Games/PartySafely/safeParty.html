@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>The "Dead" Party</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:thin,extra-light,light,100,200,300,400,500,600,700,800' rel='stylesheet' type='text/css' />
+    <script src="script.js" type="text/javascript" defer></script>
+  </head>
+  <body onclick="if(!done){play()}">
+    <iframe src="https://www.youtube.com/embed/gnPnEvy4e70?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" id="p" hidden></iframe>
+    <script>
+      let player = document.getElementById("p");
+      let done = false;
+      function play() {
+        done = true;
+        if (player.src == "https://www.youtube.com/embed/gnPnEvy4e70?autoplay=1" && done) {
+          player.src = "https://www.youtube.com/embed/z5Otla5157c?autoplay=1";
+          setTimeout(play, (3*60+18)*1000);
+          console.log("playing");
+        } else if (player.src == "https://www.youtube.com/embed/z5Otla5157c?autoplay=1" && done) {
+          player.src = "https://www.youtube.com/embed/gnPnEvy4e70?autoplay=1";
+          setTimeout(play, (1*60+30)*1000);
+          console.log("playing");
+        }
+      }
+    </script>
+    <div class="navbar">
+      <a href="index.html" class="brand-tittle">Communist Studios</a>
+      <a href="#" class="toggle-button">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </a>
+      <div class="navbar-links">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="vote.html">Choose Party</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="welcome" style="margin-bottom: 20%;">
+      <h1>The "Dead" Party</h1>
+      <hr />
+      <p>Don't let "last night" be your <i>last</i> night.</p>
+    </div>
+    <div class="parallax" style="background-image: url('images/lastNight.jpg');"></div>
+    <div class="welcome" style="margin-bottom: 5%;">
+      <h1>It Doesn't Have to be Dumb to be Fun</h1>
+      <p>Parties are a great way to relax and socialise which can have numerous proven health benefits such as improved mental health and increased life expectancy.</p>
+      <p>You don't need to jump off a roof or do burnouts late at night to socialise. All you need to have fun are some friends, our party's support, and the lower taxes of a system that works.</p>
+      <p>Our study found that from 1 July 2000 (Queensland from 1 January 2001) to 31 December 2019 there were 64 festival related deaths in Australia and eternal injury was the second most common cause of death.</p>
+    </div>
+    <div class="parallax" style="background-image: url('images/carCrash.png');"></div>
+    <div class="welcome" style="margin-bottom: 5%;">
+      <h1>The Dangers of Drugs; Don't Die Before You Say Goodbye</h1>
+      <p>In our aforementioned study, we found that the primary cause of death at festivals was drug toxicity with 46.9% of the festival deaths being attributed to drug toxicity.</p>
+      <p>Beyond direct toxicity, drugs change the way your brain and body function often leading to impaired cognition; when you take drugs you don't have control and may make bad decisions such as engaging in unsafe sex, driving, or violent behavior. The most common causes of drug toxicity are using multiple drugs together and not knowing what or how much you are consuming (due to spiking or contamination).</p>
+    </div>
+    <div class="parallax" style="background-image: url('images/drugs.png');"></div>
+    <div class="welcome" style="margin-bottom: 5%;">
+      <h1>Alcohol; the Poison of Kings</h1>
+      <p>Alcohol is the most widely used drug in Australia and caused the second most festival deaths from drug toxicity.</p>
+      <p>Alcohol is one of the most common drugs to be mixed with other drugs and can cause acute conative impairment, lowered reaction speed, lowered inhibitions, nausea, unconsciousness, and even death or chronic liver disease/cirrhosis, brain damage, memory loss, cancer, sexual dysfunction, and even death.</p>
+      <p>If you do not want to drink alcohol because you know it makes you sick, you don't like it, or you're driving, do not drink. You can still always have a good time with The "Dead" Party.</p>
+      <p>If you do choose to drink there are several things to be aware of to help keep you and your friends safe. Make a plan for how many drinks you will have so you don't get sick and make a plan to drive home with a designated sober driver, or to catch an Uber or similar home. Alcohol is a 0-tolerance substance so even a small amount, under the legal limit, can impair your driving and increase you're risk. Try to drink water or other non-alcoholic drinks to quench your thirst and try to eat something before and between drinks as this will slow the absorption of alcohol. Also, try to avoid high alcohol drinks or large drinks (especially cocktails or party punch), any drinking games, and be careful to make sure no one tops up your drink without you knowing as these can all lead to you drinking more than you intended. To avoid spiking with other drugs, watch your drink carefully to make sure no one puts anything in it and never accept a drink from a stranger. Drink spiking is dangerous and illegal but still quite common in certain party environments, especially at The Dead Party.</p>
+    </div>
+    <div class="parallax" style="background-image: url('images/alcohol.png');"></div>
+    <div class="welcome" style="margin-bottom: 5%;">
+      <h1>Peer Pressure; Just Say 'No'?</h1>
+      <p>As people we are inherently social and so we desire the approval of our peers. This is why it can be so tempting to give in to peer pressure, or just do something because we think it will make us more 'cool'. While under the influence we can feel fearless and confident leading to poor decisions such as drink driving, unsafe sex, or taking additional drugs. This effect is often compounded by peer pressure, but remember, you don't have to do anything you don't want to, you don't need to drink or take drugs if you don't want to, and you can always leave. If your friends try to pressure you into doing something you don't want to do you should leave and talk to someone about it.</p>
+      <p>Additionally, you should support your friends if you think they are going to do something they will regret or don't want to do. You can direct the conversation away, you can ask if they want to go somewhere else, or you can ask them if they really want to do it.</p>
+      <p>Just saying 'no' can seem impossible without a strong support system of friends, but at The "Dead" Party, you never have to do something you don't want to do.</p>
+    </div>
+    <div class="parallax" style="background-image: url('images/beerPong.png');"></div>
+    <div class="welcome" style="margin-bottom: 5%;">
+      <h1>Safely Taking Drugs</h1>
+      <p>If you do choose to take illicit drugs you should tell a friend what you're taking so that if an ambulance is called they can tell the paramedics what you have taken so you can get the best care.</p>
+      <p>Even if you sleep for a few hours after drinking or taking drugs, they may remain in your system making it dangerous for you to drive even hours later, especially if you eat before or while you drink.</p>
+      <p>Drugs can be contaminated so use our revolutionary <a href="https://www.cahma.org.au/services/cantest/">CanTEST</a> facilities to get your drugs tested between 3pm and 6pm on a Thursday, and 6pm-9pm on a Friday. You can also get free counselling and harm reduction advice even without getting any drugs tested.</p>
+      <p>Our drug testing and counselling services proactively reduce harm and hospitalisation due to contaminated drug use reducing the strain on healthcare services, and improving employment and productivity. This allows for more economic growth at lower taxes.</p>
+    </div>
+    <div class="parallax" style="background-image: url('images/canTEST.png');"></div>
+    <div class="welcome" style="margin-bottom: 5%;">
+      <h1>Sex at Parties Under the Influence</h1>
+      <p>When you are drugged at parties you may choose to have sex with people or at times you may not normally. This can lead to embarrassment or shame and, as you may forget to use protection, STDs or pregnancy. If you had unprotected sex, it is important to get tested for STDs and pregnancy as soon as possible and talk to your doctor if you have any concerns about your health.</p>
+      <p>While you are drunk or drugged you are legally incapable of giving consent and this is true of everyone else, so if you are going to have sex with someone who cannot consent, you should stop immediately as it is illegal. Equally, if someone had sex with you without your consent, you can call the police or contact the <a href="https://www.sacl.com.au/">Sexual Assault Crisis Line</a> for help.</p>
+    </div>
+    <div class="parallax" style="background-image: url('images/consent.png');"></div>
+    <div class="welcome" style="margin-bottom: 5%;">
+      <h1>Look After Your Fellow "Dead" Party Goers so They Don't Become <i>Dead</i> Party Goers</h1>
+      <p>If you notice someone is seeming unwell check if they are having drugs (including alcohol) overdose or are drunk. There are several things to look for in someone who may have had drugs such as any loss of muscle control or coordination. This often presents as passing out, coma, seizures or tremors, staring or rolling eyes (involuntarily), and/or irregular or slow breathing. Depending on the drug(s) and the dose(s), your friend may vomit, have mental confusion, or cyanosis (low body temperature or pale and/or blue skin). If someone is at risk of vomiting when drugged, you should never leave them on their own and try to leave them in the recovery position if possible as this reduces the risk of passing out and hurting themselves without anyone around, and aspiration (when they throw up in their mouths but can't wake up due to drug coma). If you think someone is showing any of these symptoms, they are likely suffering from an overdose and you should call the ambulance immediately. If you are afraid of getting them in trouble for using drugs, know that the paramedics cannot call the police unless they believe there is a reasonable risk to themselves or others.</p>
+      <p>You should also call the ambulance and potentially the police if you think someone has been assaulted. They may not be communicative or awake so you have to make the assessment and tell the ambulance that you think they have been assaulted.</p>
+    </div>
+    <div class="parallax" style="background-image: url('images/recoveryPosition.png');"></div>
+    <div class="welcome" style="margin-bottom: 5%;">
+      <h1>Come to Our "Dead" Party so <i>You</i> Don't End up Dead</h1>
+      <p>The Dead Party may say we are boring and "Dead", but with lower taxes, lower mortality rates, and a comprehensive plan to increase economic growth, you can party with peace of mind knowing that you have the support of The "Dead" Party.</p>
+      <div style="height: 70vh;"></div>
+    </div>
+  </body>
+</html>

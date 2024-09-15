@@ -115,9 +115,9 @@ document.addEventListener('keydown', function(e) {
         if (factor == "people") {
             peopleNum += 1;
         } else if (factor == "radius") {
-            r += 0.1;
+            r += 1;
         } else if (factor == "speed" || factor == "ran") {
-            sped += sped * 100.1;
+            sped *= 2;
         } else if (factor == "stroke") {
             strok += 1;
         }
@@ -130,7 +130,7 @@ document.addEventListener('keydown', function(e) {
             }
         } else if (factor == "radius") {
             if (r > 0) {
-                r -= 0.1;
+                r -= 1;
             }
         } else if (factor == "speed" || factor == "ran") {
             if (sped/3 > 0) {
@@ -149,6 +149,7 @@ document.addEventListener('keydown', function(e) {
         case 82:
         // r key pressed
         factor = "radius";
+        break;
         case 83:
         // s key pressed
         factor = "speed";

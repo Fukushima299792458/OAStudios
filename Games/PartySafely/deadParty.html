@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>The Dead Party</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:thin,extra-light,light,100,200,300,400,500,600,700,800' rel='stylesheet' type='text/css' />
+    <script src="script.js" type="text/javascript" defer></script>
+  </head>
+  <body onclick="if(!done){play()}">
+    <iframe src="https://www.youtube.com/embed/BXlYuaycRbU?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" id="p" hidden></iframe>
+    <script>
+      let player = document.getElementById("p");
+      let done = false;
+      function play() {
+        done = true;
+        if (player.src == "https://www.youtube.com/embed/BXlYuaycRbU?autoplay=1" && done) {
+          player.src = "https://www.youtube.com/embed/HgzGwKwLmgM?autoplay=1";
+          setTimeout(play, (3*60+38)*1000);
+          console.log("playing");
+        } else if (player.src == "https://www.youtube.com/embed/HgzGwKwLmgM?autoplay=1" && done) {
+          player.src = "https://www.youtube.com/embed/BXlYuaycRbU?autoplay=1";
+          setTimeout(play, (3*60+11)*1000);
+          console.log("playing");
+        }
+      }
+    </script>
+    <div class="navbar">
+      <a href="index.html" class="brand-tittle">Communist Studios</a>
+      <a href="#" class="toggle-button">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </a>
+      <div class="navbar-links">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="vote.html">Choose Party</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="welcome" style="margin-bottom: 20%;">
+      <h1>The Dead Party</h1>
+      <hr />
+      <p>Live every night like it will be your last (because if you live it like that, it just might be).</p>
+      <p>Allegations unproven*</p>
+    </div>
+    <div class="parallax" style="background-image: url('images/law.png');"></div>
+    <div class="welcome" style="margin-bottom: 5%;">
+      <h1>Sometimes You Get in with the Wrong Crowd</h1>
+      <p>Sometimes you just start hanging out with the wrong people, so maybe you do things you wouldn't normally, but you wouldn't want to be defined by that short phase or that one thing you did. Take Hitler for example, even 100 years later, he will still be the guy that industrialised genocide on a scale never seen before or since, all because of a short phase when he was like 50. Clearly, even if any of the allegations against our former leader were credible, we shouldn't be defined by those few times when our party punch was allegedly spiked.</p>    </div>
+    <div class="parallax" style="background-image: url('images/hitler.png');"></div>
+    <div class="welcome" style="margin-bottom: 5%;">
+      <h1>No One Will Stop You Here</h1>
+      <p>Here at The Dead Party, we couldn't stop you from getting higher than Mount Everest if we wanted to. We don't have nearly enough members or enough money after all the skimming to higher anymore staff at our parties. You can do whatever you want and know that you can bare the consequences of your actions all on your own without someone judging you.</p>
+    </div>
+    <div class="parallax" style="background-image: url('images/noPolice.png');"></div>
+    <div class="welcome" style="margin-bottom: 5%;">
+      <h1>Drinking Games!</h1>
+      <p>All games are fun, but drinking games are the best because you don't remember the fun part, you just remember the killer hangover the next day, you know what they say, "no pain, no gain", and all this while risking your life, "no risk, no reward".</p>
+    </div>
+    <div class="parallax" style="background-image: url('images/drunk.png');"></div>
+    <div class="welcome" style="margin-bottom: 5%;">
+      <h1>We're so Confident (and Broke) that We Don't Need (or Have) Anymore Promotional Material</h1>
+      <p>Since our research and writing teams allegedly went missing we having been lacking promotional material, but we are so confident that you will make the wrong decision that we don't need to say anything more. People are dumb so you will come to our party anyway. Chad was a regular at our parties and Chad was cool, so our parties must be way more cool than and "Dead" Party The "Dead" Party can cook up. (And we will steal and image from them just to show how we can even make blatant plagiarism cool).</p>
+    </div>
+    <div class="parallax" style="background-image: url('images/beerPong.png');"></div>
+    <div class="welcome" style="margin-bottom: 5%;">
+      <h1>Since we Have so Few Members, You Might as Well Meet the Team</h1>
+    </div>
+    <div class="meet-the-team">
+      <ul>
+        <li><img class="displayed" src="images/arki_pfp.png" alt="arki/achilles, spartan warrior" /><p>Arki</p><p>Founder of legitimate tax agency (LTA).</p></li>
+        <li><img class="displayed" src="images/chayse_pfp.png" alt="chayse, paw patrol police dog" /><p>Chayse</p><p>Collects excessive amounts of taxes (works for the LTA) while also committing tax fraud.</p></li>
+        <li><img class="displayed" src="images/phoenix_pfp.png" alt="Phoenix Wulf, a British aeroplane" /><p>Phoenix</p><p>Communism. That's all... Had a Bri'ish warplane named after him.</p></li>
+        <li><img class="displayed" src="images/karlmarx.jpg" alt="History repeats itself, first as tragedy, second as farce. - karl marx, a great communist" /><p>Isaac</p></li>
+      </ul>
+    </div>
+    <div class="welcome" style="margin-bottom: 5%;">
+      <h1>If You Come to The Dead Party, You Might Die, But You'll Die Cold and Alone on the Bathroom Floor in a Pool of Your Own Vomit</h1>
+      <p>Would you rather die while convulsing violently knowing you just had the night of your life, or go the the deathly boring "Dead" Party and live a full and happy life?</p>
+      <div style="height: 60vh;"></div>
+    </div>
+    <div class="meet-the-team">
+      <ul>
+        <p>Communist Studios.</p>
+        <p>*Allegations against The Dead Party and its surviving members remain unproven and lack first hand witnesses to support such claims. </p>
+        <p>For business enquires call (02) 6214 5600 (Embassy of the United States of America, Australia).</p>
+      </ul>
+    </div>
+  </body>
+</html>
