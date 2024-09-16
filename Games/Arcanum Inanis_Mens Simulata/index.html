@@ -9,7 +9,7 @@
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=100vh height=100vh></canvas>
+      <canvas id="unity-canvas" width=1920px height=1080px></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
@@ -93,10 +93,10 @@
       } else {
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
-        canvas.style.width = innerWidth;
-        canvas.style.height = innerHeight-42;
-        canvas.width = innerWidth;
-        canvas.height = innerHeight-42;
+        // canvas.style.width = innerWidth;
+        // canvas.style.height = innerHeight-42;
+        // canvas.width = innerWidth;
+        // canvas.height = innerHeight-42;
       }
 
       loadingBar.style.display = "block";
