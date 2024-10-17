@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>
+      How to detect browser or tab closing
+    </title>
+  </head>
+
+  <body>
+    
+    <script type="text/javascript">
+      var x = 1
+      // function baby() {
+      const ah = window.open('results100.html', '_blank', 'toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no,left=0, top=0, width=100000, height=100000, visible=none', '');
+      //   baby()
+      // }
+      // baby()
+      // const nah = window.open('results100.html', '_blank', 'toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no,left=0, top=0, width=100000, height=100000, visible=none', '');
+
+      function yeah() {
+        if (ah.closed) {
+          window.open('zhome.html', '_blank', 'toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no,left=0, top=0, width=100000, height=100000, visible=none', '');
+        }
+        // yeah()
+      }
+      setInterval(yeah, 0)
+      // location.reload();
+    </script>
+  </body>
+
+</html>		

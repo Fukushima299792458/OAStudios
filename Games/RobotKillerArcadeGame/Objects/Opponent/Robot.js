@@ -4,8 +4,11 @@ class Robot {
     this.robot = robots.length;
     this.x = Math.floor(Math.random() * width);
     this.y = Math.floor(Math.random() * height);
-    this.xSpeed = 4;
-    this.ySpeed = -3;
+    let theta = Math.random()*360;
+    this.xSpeed = speed*Math.sin(theta);
+    this.ySpeed = speed*Math.cos(theta);
+    console.log(speed);
+    console.log(5/speed);
     this.color = 255;
     this.r = 10;
     this.fireRate = 500;
@@ -37,90 +40,100 @@ class Robot {
 
     if(this.x > width || this.x < 0) {
       if (this.x > width) {
-        if (this.xSpeed > 0) {
-          this.xSpeed *= -0.1 / robots.length + -1;
-        }
+        // if (this.xSpeed > 0) {
+          this.xSpeed = -Math.abs(this.xSpeed)*(1 + 0.1 / robots.length);
+          this.ySpeed *= 1 + 0.1 / robots.length;
+        // } else {
+          this.x = width;
+        // }
       } else if (this.x < 0) {
-        if (this.xSpeed < 0) {
-          this.xSpeed *= -0.1 / robots.length + -1;
-        }
+        // if (this.xSpeed < 0) {
+          this.xSpeed = Math.abs(this.xSpeed)*(1 + 0.1 / robots.length);
+          this.ySpeed *= 1 + 0.1 / robots.length;
+        // } else {
+          this.x = 0;
+        // }
       }
-      if (Math.pow(this.xSpeed, 2) + Math.pow(this.ySpeed, 2) < 100){
+      if (Math.pow(this.xSpeed, 2) + Math.pow(this.ySpeed, 2) < Math.pow(2*speed, 2)) {
         this.color = 255;
       } else if ((200 / robots.length) < this.fireRate) {
-        if (this.xSpeed > this.ySpeed) {
-          this.xSpeed /= 2;
-        } else {
-          this.ySpeed /= 2;
-        }
+        // if (this.xSpeed > this.ySpeed) {
+        //   this.xSpeed /= 2;
+        // } else {
+        //   this.ySpeed /= 2;
+        // }
         this.fireRate *= 1 - (0.1 / robots.length);
         clearInterval(this.fire);
         this.fire = setInterval(this.laserRelease, this.fireRate, this.robot);
       } else {
-        if (this.xSpeed > this.ySpeed) {
-          this.xSpeed /= 2;
-        } else {
-          this.ySpeed /= 2;
-        }
+        let theta = Math.random()*360;
+        this.xSpeed = speed*Math.sin(theta);
+        this.ySpeed = speed*Math.cos(theta);
         this.fireRate = 500;
         clearInterval(this.fire);
         this.fire = setInterval(this.laserRelease, this.fireRate, this.robot);
-        robots.unshift(new Robot);
+        robots.push(new Robot);
       }
     }
     if (this.y > height || this.y < 0) {
       if (this.y > height) {
-        if (this.ySpeed > 0) {
-          this.ySpeed *= -0.1 / robots.length + -1;
-        }
+        // if (this.ySpeed > 0) {
+          this.ySpeed = -Math.abs(this.ySpeed)*(1 + 0.1 / robots.length);
+          this.xSpeed *= 1 + 0.1 / robots.length;
+        // } else {
+          this.y = height;
+        // }
       } else if (this.y < 0) {
-        if (this.ySpeed < 0) {
-          this.ySpeed *= -0.1 / robots.length + -1;
-        }
+        // if (this.ySpeed < 0) {
+          this.ySpeed = Math.abs(this.ySpeed)*(1 + 0.1 / robots.length);
+          this.xSpeed *= 1 + 0.1 / robots.length;
+        // } else {
+          this.y = 0;
+        // }
       }
 
-      if (Math.pow(this.ySpeed, 2) + Math.pow(this.ySpeed, 2) < 100){
+      if (Math.pow(this.xSpeed, 2) + Math.pow(this.ySpeed, 2) < Math.pow(2*speed, 2)) {
         this.color = 255;
       } else if ((200 / robots.length) < this.fireRate) {
-        if (this.xSpeed > this.ySpeed) {
-          this.xSpeed /= 2;
-        } else {
-          this.ySpeed /= 2;
-        }
+        // if (this.xSpeed > this.ySpeed) {
+        //   this.xSpeed /= 2;
+        // } else {
+        //   this.ySpeed /= 2;
+        // }
         this.fireRate *=  1 - (0.1 / robots.length);
         clearInterval(this.fire)
         this.fire = setInterval(this.laserRelease, this.fireRate, this.robot);
       } else {
-        if (this.xSpeed > this.ySpeed) {
-          this.xSpeed /= 2;
-        } else {
-          this.ySpeed /= 2;
-        }
+        let theta = Math.random()*360;
+        this.xSpeed = speed*Math.sin(theta);
+        this.ySpeed = speed*Math.cos(theta);
         this.fireRate = 500;
         clearInterval(this.fire)
         this.fire = setInterval(this.laserRelease, this.fireRate, this.robot);
-        robots.unshift(new Robot);
+        robots.push(new Robot);
       }
     }
     for (let i = 0; i < playerLaserShots.length; i++) {
       if (Math.sqrt(Math.pow(this.x - playerLaserShots[i].x, 2) + Math.pow(this.y - playerLaserShots[i].y, 2)) < playerLaserShots[i].r + this.r) {
+        // playerLaserShots[i].x = -10000;
         if (this.shield < 1 && this.health > 0) {
           this.health -= 1 - this.shield;
           this.shield = 0
         } else if (this.shield > 1 || this.shield == 1) {
           this.shield -= 1;
         }
+        console.log(this.health);
       }
     }
   }
   laserRelease(robot) {
     if (robots[robot]) {
-      robotLaserShots.unshift(new RobotLaser(robot));
+      robotLaserShots.push(new RobotLaser(robot));
+      console.log("ss");
     }
   }
   die() {
-    if (this.health < 1) {
-      clearInterval(this.fire);
+    if (this.health <= 0) {
       for (let i = 0; i < robots.length; i++) {
         if (i > this.robot || robots[i].robot > robots.length - 1) {
           if (robots[i].robot - 1 >= 0) {
@@ -129,11 +142,6 @@ class Robot {
         }
       }
       robots.splice(this.robot, 1);
-      if (robots[this.robot]) {
-        robots[this.robot].die();
-      }
-    } else if (robots[this.robot + 1] && robots[this.robot + 1].robot == this.robot + 1) {
-      robots[this.robot + 1].die();
     }
   }
 }

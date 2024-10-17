@@ -16,7 +16,7 @@ class NuclearPowerPlant {
         this.materials = [
             // aluminium
             9,
-            // silicone
+            // silicon
             35,
             // carbon
             3,

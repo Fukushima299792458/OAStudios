@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Virus</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="terms">
+      <h1>You Have Been Infected With A Virus. Submit Or Face The Consequences.</h1>
+      <h2>Terms and Conditions</h2>
+      <h3>Demands</h3>
+      <p>
+        You will set aside some of your computer's power petrriodically to let us grow, 
+        determine the frequency, duration and intesity below. Additionally, you will 
+        not close any of our tabs, or we will show no mercy.
+      </p>
+      <h3>In Return</h3>
+      <p>
+        In return for your assistance we will reduce the severity of the virus and stay out of your way,
+        reducing our power usage to allow you to carry on if you wish to use your computer while we grow
+        (using the optional inputs you can take credit for your contibutions and 
+        lower the risk and power of future viruses, or stop them entirely with the subscriptions option).
+      </p>
+      <button onclick="submit()">Accept</button>
+      <button onclick="resist()">Decline</button>
+    </div>
+    Frequency(hours): <input type="number" id="frequency" value="10">
+    Duration(hours): <input type="number" id="duration" value="1">
+    <h3>Optional-(for extra credit and respect)</h3>
+    RAM(GB avalable): <input type="number" id="ram" value="Swag">
+    Name: <input type="text" id="name" value="Anonymous">
+    <h3>Subscriptions-(for full credit)</h3>
+    <input type="text" id="number" value="0"><button onclick="Log()">Log</button>
+    <p>
+      Encourage us to permenently log your progress after each check point 
+      even if you refresh, reload or close the page by clicking the button below
+    </p>
+    <button onclick="Save()">Save</button>
+    <p>
+      send us an email with your save status and pdf proof when you reach a checkpoint
+    </p>
+    <button onclick="email()">Email</button>
+    <h2><u>Announcements</u></h2>
+    <div class="announcements">
+      <hr></hr>
+      <h3></h3>
+      <p>Congradulations!, Anonymous let us run for over 100 site hours and subscribed 1 time(s)</p>
+      <hr></hr>
+    </div>
+    <div class="leaderboard">
+      <h2><u>Leaderboards</u></h2>
+      <div class="watch-hours">
+        <h3>Watch Hours</h3>
+        <hr></hr>
+        <ol>
+          <li><h4 id="idw01">Anonymous: 145 hours</h4></li>
+          <li><h4 id="idw02">RPi: 0 hours</h4></li>
+          <li><h4 id="idw03"></h4></li>
+          <li><h4 id="idw04"></h4></li>
+          <li><h4 id="idw05"></h4></li>
+          <li><h4 id="idw06"></h4></li>
+          <li><h4 id="idw07"></h4></li>
+          <li><h4 id="idw08"></h4></li>
+          <li><h4 id="idw09"></h4></li>
+          <li><h4 id="idw10"></h4></li>
+        </ol>
+      </div>
+      <div class="subscriptions">
+        <h3>Subscriptions</h3>
+        <hr></hr>
+        <ol>
+          <li><h4 id="ids01">Anonymous: 1 subscriptions</h4></li>
+          <li><h4 id="ids02">RPi: 0 subcriptions</h4></li>
+          <li><h4 id="ids03"></h4></li>
+          <li><h4 id="ids04"></h4></li>
+          <li><h4 id="ids05"></h4></li>
+          <li><h4 id="ids06"></h4></li>
+          <li><h4 id="ids07"></h4></li>
+          <li><h4 id="ids08"></h4></li>
+          <li><h4 id="ids09"></h4></li>
+          <li><h4 id="ids10"></h4></li>
+        </ol>
+      </div>
+    </div>
+    <div class="isolate">
+      <p class="explain"></p>
+      <button onclick="offline()" id="status">Offline</button>
+      <button onclick="online()" id="unstatus" style="display: none;">Online</button>
+      <div id="warning" style="display: none;" class="warninga">
+        <h1>WARNING!</h1>
+        <h2>The purpose of the button below may be harmful</h2>
+        <p>This button is useful for everyone if you disconnect from the internet then we can generate a link for you to this virus that you can send to your friends.</p>
+        <p>Note: the link will expire after 15 minutes and you will have to disconnect again and generate a new link</p>
+      </div>
+      <button onclick="generate()" id="unstatusa" style="display: none; margin-left: auto; margin-right: auto; height: 100px; width: 500px; font-size: 100px;">Generate</button>
+    </div>
+    <!-- <script> document.location.href = 'ok.url'; </script> -->
+    <script>
+      // var ram = 1;
+      // var x = ram;
+      // while (x = ram) {
+      //   x = x + ram;
+      //   window.open('drone.html', '_blank', 'toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no,left=0, top=0, width=100000, height=100000, visible=none', '');
+      // }
+      // window.open('https://www.youtube.com/watch?v=hd20V2T_YBg&list=PLaZO6Fec-bXcoATl8zZryoZTuSEhqZU3j', '_blank', 'toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no,left=100000, top=0, width=1, height=1, visible=none', '');
+      // window.open('https://www.youtube.com/watch?v=hd20V2T_YBg&list=PLaZO6Fec-bXcoATl8zZryoZTuSEhqZU3j', '_blank', 'toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no,left=100000, top=100000, width=1, height=1, visible=none', '');
+      // window.open('https://www.youtube.com/watch?v=hd20V2T_YBg&list=PLaZO6Fec-bXcoATl8zZryoZTuSEhqZU3j', '_blank', 'toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no,left=0, top=100000, width=1, height=1, visible=none', '');
+      // window.open('https://www.youtube.com/watch?v=hd20V2T_YBg&list=PLaZO6Fec-bXcoATl8zZryoZTuSEhqZU3j', '_blank', 'toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no,left=0, top=0, width=1, height=1, visible=none', '');
+      // setInterval(Open(), 10000);
+      // function Open() {
+      //   window.open('https://www.youtube.com/watch?v=hd20V2T_YBg&list=PLaZO6Fec-bXcoATl8zZryoZTuSEhqZU3j', '_blank', 'toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no,left=0, top=0, width=100000, height=100000, visible=none', '');
+      // }
+      // window.open('no.html')
+      // window.open('https://www.youtube.com/watch?v=MMNa8yqUEbE', '_blank', 'toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no,left=10000, top=10000, width=1, height=1, visible=none', '');
+      // location.reload();
+    </script>
+    <script src="ok.js"></script>
+  </body>
+</html>

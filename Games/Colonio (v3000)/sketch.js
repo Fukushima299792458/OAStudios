@@ -168,7 +168,7 @@ let researchPoints = 0;
 // variables to keep track of the different materials 
 let metalOre = 0;
 let aluminium = 80;
-let silicone = 300;
+let silicon = 300;
 let carbon = 240;
 let computerParts = 230;
 let rocketFuel = 100;
@@ -244,7 +244,7 @@ if (saveGame != null) {
     // variables to keep track of the different materials 
     metalOre = saveGame[1][13];
     aluminium = saveGame[1][14];
-    silicone = saveGame[1][15];
+    silicon = saveGame[1][15];
     carbon = saveGame[1][16];
     computerParts = saveGame[1][17];
     rocketFuel = saveGame[1][18];
@@ -706,6 +706,14 @@ function setup() {
 }
 
 function draw() {
+    canvas = createCanvas(innerWidth, innerHeight - 4);
+
+    width = canvas.width;
+    height = canvas.height;
+
+    canvas.id("canvas");
+    canvas = document.getElementById("canvas");
+    context = canvas.getContext('2d');
     saveGame = [buildings, timeConsume];
     localStorage.setItem(saveGameIndex[saveGameIndex[1]], JSON.stringify(saveGame))
     // reset the background colour to the desired colour and clear past frames
@@ -779,76 +787,93 @@ function draw() {
         }
     }
 
-
     // display the total and major stats for the palyer with expanded wiew on hover
     context.fillStyle = "black";
     context.font = `${height / 25}px Verdana`;
+    stroke(0, 0, 0);
+    context.textAlign = "center";
 
     if (mouseY < height / 15) {
-        if (mouseX < 3 * width / 11) {
-            context.fillText(`Total Pwr Consump: ${Math.round(totalPowerConsumption)} Kw`, 0, 2 * height / 25, 1 * width / 4);
-            context.fillText(`Total Pwr O/P: ${Math.round(totalPowerOutput)} Kw`, 0, 3 * height / 25, 1 * width / 4);
-            context.fillText(`Total Pwr Cap: ${totalPowerCapacity} Kw`, 0, 4 * height / 25, 1 * width / 4);
-            context.fillText(`Max Pwr Cap: ${maxPowerOutput} Kw`, 0, 5 * height / 25, 1 * width / 4);
-            context.fillText(`|`, width / 4, 1 * height / 25);
-            context.fillText(`|`, width / 4, 2 * height / 25);
-            context.fillText(`|`, width / 4, 3 * height / 25);
-            context.fillText(`|`, width / 4, 4 * height / 25);
-            context.fillText(`|`, width / 4, 5 * height / 25);
-        } else if (mouseX < 5 * width / 11) {
-            context.fillText(`Actv Scientists: ${actvScientists}`, 3 * width / 11, 2 * height / 25, 1 * width / 6);
-            context.fillText(`Idle: ${idle}`, 3 * width / 11, 3 * height / 25, 1 * width / 6);
-            context.fillText(`Children: ${children}`, 3 * width / 11, 4 * height / 25, 1 * width / 6);
-            context.fillText(`Maternity: ${maternity}`, 3 * width / 11, 5 * height / 25, 1 * width / 6);
-            context.fillText(`|`, 5 * width / 11, 1 * height / 25);
-            context.fillText(`|`, 5 * width / 11, 2 * height / 25);
-            context.fillText(`|`, 5 * width / 11, 3 * height / 25);
-            context.fillText(`|`, 5 * width / 11, 4 * height / 25);
-            context.fillText(`|`, 5 * width / 11, 5 * height / 25);
-        } else if (mouseX < 13 * width / 19) {
-            context.fillText(`Metal Ore: ${Math.round(metalOre)} mt`, 9 * width / 19, 2 * height / 25, 4 * width / 19);
-            context.fillText(`Aluminium: ${Math.round(aluminium)} mt`, 9 * width / 19, 3 * height / 25, 4 * width / 19);
-            context.fillText(`Silicone: ${Math.round(silicone)} mt`, 9 * width / 19, 4 * height / 25, 4 * width / 19);
-            context.fillText(`Carbon: ${Math.round(carbon)} mt`, 9 * width / 19, 5 * height / 25, 4 * width / 19);
-            context.fillText(`Computer Parts: ${computerParts}`, 9 * width / 19, 6 * height / 25, 4 * width / 19);
-            context.fillText(`|`, 13 * width / 19, 1 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 2 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 3 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 4 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 5 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 6 * height / 25); 
+        if (mouseX < width / 5) {
+            context.fillText(`Total Pwr Consump: ${Math.round(totalPowerConsumption)} Kw`, width / 10, 2 * height / 25, width / 5);
+            context.fillText(`Total Pwr O/P: ${Math.round(totalPowerOutput)} Kw`, width / 10, 3 * height / 25, width / 5);
+            context.fillText(`Total Pwr Cap: ${totalPowerCapacity} Kw`, width / 10, 4 * height / 25, width / 5);
+            context.fillText(`Max Pwr Cap: ${maxPowerOutput} Kw`, width / 10, 5 * height / 25, width / 5);
+            context.fillText(`|`, width / 5, 1 * height / 25);
+            context.fillText(`|`, width / 5, 2 * height / 25);
+            context.fillText(`|`, width / 5, 3 * height / 25);
+            context.fillText(`|`, width / 5, 4 * height / 25);
+            context.fillText(`|`, width / 5, 5 * height / 25);
+        } else if (mouseX < width / 5 + width / 7) {
+            context.fillText(`Actv Scientists: ${actvScientists}`, width / 5 + width / 14, 2 * height / 25, width / 7);
+            context.fillText(`Idle: ${idle}`, width / 5 + width / 14, 3 * height / 25, width / 7);
+            context.fillText(`Children: ${children}`, width / 5 + width / 14, 4 * height / 25, width / 7);
+            context.fillText(`Maternity: ${maternity}`, width / 5 + width / 14, 5 * height / 25, width / 7);
+
+            context.fillText(`|`, width / 5, 1 * height / 25);
+            context.fillText(`|`, width / 5, 2 * height / 25);
+            context.fillText(`|`, width / 5, 3 * height / 25);
+            context.fillText(`|`, width / 5, 4 * height / 25);
+            context.fillText(`|`, width / 5, 5 * height / 25);
+
+            context.fillText(`|`, width / 5 + width / 7, 1 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7, 2 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7, 3 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7, 4 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7, 5 * height / 25);
+        } else if (mouseX < width / 5 + width / 7 + 7 * width / 19) {
+            context.fillText(`Metal Ore: ${Math.round(metalOre)} mt`, width / 5 + width / 7 + 7 * width / 38, 2 * height / 25, 7 * width / 19);
+            context.fillText(`Aluminium: ${Math.round(aluminium)} mt`, width / 5 + width / 7 + 7 * width / 38, 3 * height / 25, 7 * width / 19);
+            context.fillText(`silicon: ${Math.round(silicon)} mt`, width / 5 + width / 7 + 7 * width / 38, 4 * height / 25, 7 * width / 19);
+            context.fillText(`Carbon: ${Math.round(carbon)} mt`, width / 5 + width / 7 + 7 * width / 38, 5 * height / 25, 7 * width / 19);
+            context.fillText(`Computer Parts: ${computerParts}`, width / 5 + width / 7 + 7 * width / 38, 6 * height / 25, 7 * width / 19);
+
+            context.fillText(`|`, width / 5 + width / 7, 1 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7, 2 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7, 3 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7, 4 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7, 5 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7, 6 * height / 25);
+
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 1 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 2 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 3 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 4 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 5 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 6 * height / 25); 
         } else {
-            context.textAlign = "end";
-            context.fillText(`Air: ${Math.round(air)} mt`, width, 2 * height / 25, 5 * width / 19);
-            context.fillText(`Oxygen: ${Math.round(oxygen)} kg`, width, 3 * height / 25, 5 * width / 19);
-            context.fillText(`Water: ${Math.round(water)} mt`, width, 4 * height / 25, 5 * width / 19);
-            context.fillText(`Food: ${Math.round(food)} kg`, width, 5 * height / 25, 5 * width / 19);
-            context.fillText(`Nuclear Fuel: ${Math.round(nuclearFuel)} kg`, width, 6 * height / 25, 5 * width / 19);
-            context.fillText(`Contaminated Water Ice: ${Math.round(contaminatedWaterIce)} mt`, width, 7 * height / 25, 5 * width / 19);
-            context.fillText(`Carbon Dioxide: ${Math.round(carbonDioxide)} kg`, width, 8 * height / 25, 5 * width / 19);
-            context.fillText(`Rocket Fuel: ${rocketFuel} mt`, width, 9 * height / 25, 5 * width / 19);
-            context.textAlign = "start";
-            context.fillText(`|`, 13 * width / 19, 1 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 2 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 3 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 4 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 5 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 6 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 6.99 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 7.99 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 8.98 * height / 25);
+            // context.textAlign = "end";
+            context.fillText(`Air: ${Math.round(air)} mt`, width / 5 + width / 7 + 7 * width / 19 + 96 * width / 665, 2 * height / 25, 192 * width / 665);
+            context.fillText(`Oxygen: ${Math.round(oxygen)} kg`, width / 5 + width / 7 + 7 * width / 19 + 96 * width / 665, 3 * height / 25, 192 * width / 665);
+            context.fillText(`Water: ${Math.round(water)} mt`, width / 5 + width / 7 + 7 * width / 19 + 96 * width / 665, 4 * height / 25, 192 * width / 665);
+            context.fillText(`Food: ${Math.round(food)} kg`, width / 5 + width / 7 + 7 * width / 19 + 96 * width / 665, 5 * height / 25, 192 * width / 665);
+            context.fillText(`Nuclear Fuel: ${Math.round(nuclearFuel)} kg`, width / 5 + width / 7 + 7 * width / 19 + 96 * width / 665, 6 * height / 25, 192 * width / 665);
+            context.fillText(`Contaminated Water Ice: ${Math.round(contaminatedWaterIce)} mt`, width / 5 + width / 7 + 7 * width / 19 + 96 * width / 665, 7 * height / 25, 192 * width / 665);
+            context.fillText(`Carbon Dioxide: ${Math.round(carbonDioxide)} kg`, width / 5 + width / 7 + 7 * width / 19 + 96 * width / 665, 8 * height / 25, 192 * width / 665);
+            context.fillText(`Rocket Fuel: ${rocketFuel} mt`, width / 5 + width / 7 + 7 * width / 19 + 96 * width / 665, 9 * height / 25, 192 * width / 665);
+            // context.textAlign = "start";
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 1 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 2 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 3 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 4 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 5 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 6 * height / 25); 
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 7 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 8 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 9 * height / 25);
         }
     }
-    // diplay most important information at the top
-    context.fillText(`Power: ${Math.round(totalPowerConsumption)}/${totalPowerCapacity} Kw`, 0, height / 25, 1 * width / 4);
-    context.fillText(`Colonists: ${colonists}`, 3 * width / 11, 1 * height / 25, 2 * width / 5);
-    context.fillText(`Materials (ore/Al/Si): ${Math.round(metalOre)}/${Math.round(aluminium)}/${Math.round(silicone)} mt`, 9 * width / 19, 1 * height / 25, 4 * width / 19);
+    // display most important information at the top
+    context.fillText(`Power: ${Math.round(totalPowerConsumption)}/${totalPowerCapacity} Kw`, width / 10, 1 * height / 25, width / 5);
+    context.fillText(`Colonists: ${colonists}`, width / 5 + width / 14, 1 * height / 25, width / 7);
+    context.fillText(`Materials (ore/Al/Si): ${Math.round(metalOre)}/${Math.round(aluminium)}/${Math.round(silicon)} mt`, width / 5 + width / 7 + 7 * width / 38, 1 * height / 25, 7 * width / 19);
     
-    // give consumables special treatment because right up agaist other side
-    context.textAlign = "end";
-    context.fillText(`Consumables: ${Math.round(oxygen)}/${Math.round(water)}/${Math.round(food)}`, width, 1 * height / 25, 5 * width / 19);
+    // give consumables special treatment because right up against other side
+    // context.textAlign = "end";
+    context.fillText(`Consumables: ${Math.round(oxygen)}/${Math.round(water)}/${Math.round(food)}`, width / 5 + width / 7 + 7 * width / 19 + 96 * width / 665, 1 * height / 25, 192 * width / 665);
     
     // put both earth and mars time down in the cornerto help the player keep track of time passed and time of day but hide if the build menu is obstructing it
+    context.textAlign = "end";
     if (!building) {
         context.fillText(`Earth Time (yr/wks/days/hrs:mins): ${eYrs}/${eWks}/${eDays}/${eHrs}:${eMins}`, width - 5, height - (4 + height / 25), width);
         // max 18/42/1/15/36
@@ -940,21 +965,21 @@ function isBuildPreview() {
 function build() {
     // if building is actually running/true
     if (building) {
-        if (building.includes("SolarFarm l") && aluminium >= 5 && silicone >= 15 && !solarFarms[solarFarms.length - 1].encroached) {
+        if (building.includes("SolarFarm l") && aluminium >= 5 && silicon >= 15 && !solarFarms[solarFarms.length - 1].encroached) {
             aluminium -= 5;
-            silicone -= 15;
+            silicon -= 15;
             gridOnline = true;
             solarFarms[solarFarms.length - 1].preview = false;
             solarFarms[solarFarms.length - 1].level = Number(building.substring(building.length - 1));
             powerPlants = [solarFarms, nuclearPowerPlants];
             buildings = [powerPlants, beings, quarters, laboratories, plantations, mines, refineries, transportFacilities];
-            if (keyIsDown(SHIFT) && aluminium >= 5 && silicone >= 15) {
+            if (keyIsDown(SHIFT) && aluminium >= 5 && silicon >= 15) {
                 buildPreview(buildingCategory, buildingType);
             } else {
                 building = false;
             }
-        } else if (building.includes("NuclearPowerPlant l") && silicone >= 35 && aluminium >= 8 && carbon >= 3 && computerParts >= 10 && !nuclearPowerPlants[nuclearPowerPlants.length - 1].encroached) {
-            silicone -= 35;
+        } else if (building.includes("NuclearPowerPlant l") && silicon >= 35 && aluminium >= 8 && carbon >= 3 && computerParts >= 10 && !nuclearPowerPlants[nuclearPowerPlants.length - 1].encroached) {
+            silicon -= 35;
             carbon -= 3;
             aluminium -= 8;
             computerParts -= 10;
@@ -963,46 +988,46 @@ function build() {
             nuclearPowerPlants[nuclearPowerPlants.length - 1].level = Number(building.substring(building.length - 1));
             powerPlants = [solarFarms, nuclearPowerPlants];
             buildings = [powerPlants, beings, quarters, laboratories, plantations, mines, refineries, transportFacilities];
-            if (keyIsDown(SHIFT) && silicone >= 35 && aluminium >= 8 && carbon >= 3 && computerParts >= 10) {
+            if (keyIsDown(SHIFT) && silicon >= 35 && aluminium >= 8 && carbon >= 3 && computerParts >= 10) {
                 buildPreview(buildingCategory, buildingType);
             } else {
                 building = false;
             }
-        } else if (building.includes("FamilyQuarter l1") && aluminium >= 8 && silicone >= 8 && carbon >= 4 && !familyQuarters[familyQuarters.length - 1].encroached) {
+        } else if (building.includes("FamilyQuarter l1") && aluminium >= 8 && silicon >= 8 && carbon >= 4 && !familyQuarters[familyQuarters.length - 1].encroached) {
             aluminium -= 8;
-            silicone -= 8;
+            silicon -= 8;
             carbon -= 4;
             familyQuarters[familyQuarters.length - 1].preview = false;
             familyQuarters[familyQuarters.length - 1].level = Number(building.substring(building.length - 1));
             quarters = [familyQuarters];
             buildings = [powerPlants, beings, quarters, laboratories, plantations, mines, refineries, transportFacilities];
-            if (keyIsDown(SHIFT) && aluminium >= 8 && silicone >= 8 && carbon >= 4) {
+            if (keyIsDown(SHIFT) && aluminium >= 8 && silicon >= 8 && carbon >= 4) {
                 buildPreview(buildingCategory, buildingType);
             } else {
                 building = false;
             }
-        } else if (building.includes("StandardLaboratory l") && silicone >= 20 && carbon >= 20 && computerParts >= 20 && !standardLaboratories[standardLaboratories.length - 1].encroached) {
-            silicone -= 20;
+        } else if (building.includes("StandardLaboratory l") && silicon >= 20 && carbon >= 20 && computerParts >= 20 && !standardLaboratories[standardLaboratories.length - 1].encroached) {
+            silicon -= 20;
             carbon -= 20;
             computerParts -= 20;
             standardLaboratories[standardLaboratories.length - 1].preview = false;
             standardLaboratories[standardLaboratories.length - 1].level = Number(building.substring(building.length - 1));
             laboratories = [standardLaboratories];
             buildings = [powerPlants, beings, quarters, laboratories, plantations, mines, refineries, transportFacilities];
-            if (keyIsDown(SHIFT) && silicone >= 20 && carbon >= 20 && computerParts >= 20) {
+            if (keyIsDown(SHIFT) && silicon >= 20 && carbon >= 20 && computerParts >= 20) {
                 buildPreview(buildingCategory, buildingType);
             } else {
                 building = false;
             }
-        } else if (building.includes("PotatoFarm l1") && silicone >= 10 && aluminium >= 5 && computerParts >= 1 && !potatoFarms[potatoFarms.length - 1].encroached) {
-            silicone -= 10;
+        } else if (building.includes("PotatoFarm l1") && silicon >= 10 && aluminium >= 5 && computerParts >= 1 && !potatoFarms[potatoFarms.length - 1].encroached) {
+            silicon -= 10;
             aluminium -= 5;
             computerParts -= 1;
             potatoFarms[potatoFarms.length - 1].preview = false;
             potatoFarms[potatoFarms.length - 1].level = Number(building.substring(building.length - 1));
             plantations = [potatoFarms];
             buildings = [powerPlants, beings, quarters, laboratories, plantations, mines, refineries, transportFacilities];
-            if (keyIsDown(SHIFT) && silicone >= 10 && aluminium >= 5 && computerParts >= 1) {
+            if (keyIsDown(SHIFT) && silicon >= 10 && aluminium >= 5 && computerParts >= 1) {
                 buildPreview(buildingCategory, buildingType);
             } else {
                 building = false;
@@ -1019,66 +1044,66 @@ function build() {
             } else {
                 building = false;
             }
-        } else if (building.includes("Smelter l1") && carbon >= 8 && aluminium >= 4 && silicone >= 1 && !smelters[smelters.length - 1].encroached) {
+        } else if (building.includes("Smelter l1") && carbon >= 8 && aluminium >= 4 && silicon >= 1 && !smelters[smelters.length - 1].encroached) {
             carbon -= 8;
             aluminium -= 4;
-            silicone -= 1;
+            silicon -= 1;
             smelters[smelters.length - 1].preview = false;
             smelters[smelters.length - 1].level = Number(building.substring(building.length - 1));
             refineries = [smelters, waterPurificationPlants, oxygenRecyclingPlants, computerFactories];
             buildings = [powerPlants, beings, quarters, laboratories, plantations, mines, refineries, transportFacilities];
-            if (keyIsDown(SHIFT) && carbon >= 8 && aluminium >= 4 && silicone >= 1) {
+            if (keyIsDown(SHIFT) && carbon >= 8 && aluminium >= 4 && silicon >= 1) {
                 buildPreview(buildingCategory, buildingType);
             } else {
                 building = false;
             }
-        } else if (building.includes("WaterPurificationPlant l") && aluminium >= 10 && silicone >= 5 && !waterPurificationPlants[waterPurificationPlants.length - 1].encroached) {
+        } else if (building.includes("WaterPurificationPlant l") && aluminium >= 10 && silicon >= 5 && !waterPurificationPlants[waterPurificationPlants.length - 1].encroached) {
             aluminium -= 10;
-            silicone -= 5;
+            silicon -= 5;
             waterPurificationPlants[waterPurificationPlants.length - 1].preview = false;
             waterPurificationPlants[waterPurificationPlants.length - 1].level = Number(building.substring(building.length - 1));
             refineries = [smelters, waterPurificationPlants, oxygenRecyclingPlants, computerFactories];
             buildings = [powerPlants, beings, quarters, laboratories, plantations, mines, refineries, transportFacilities];
-            if (keyIsDown(SHIFT) && aluminium >= 10 && silicone >= 5) {
+            if (keyIsDown(SHIFT) && aluminium >= 10 && silicon >= 5) {
                 buildPreview(buildingCategory, buildingType);
             } else {
                 building = false;
             }
-        } else if (building.includes("OxygenRecyclingPlant l") && carbon >= 4 && silicone >= 3 && aluminium >= 5 && !oxygenRecyclingPlants[oxygenRecyclingPlants.length - 1].encroached) {
+        } else if (building.includes("OxygenRecyclingPlant l") && carbon >= 4 && silicon >= 3 && aluminium >= 5 && !oxygenRecyclingPlants[oxygenRecyclingPlants.length - 1].encroached) {
             aluminium -= 5;
-            silicone -= 3;
+            silicon -= 3;
             carbon -= 4;
             oxygenRecyclingPlants[oxygenRecyclingPlants.length - 1].preview = false;
             oxygenRecyclingPlants[oxygenRecyclingPlants.length - 1].level = Number(building.substring(building.length - 1));
             refineries = [smelters, waterPurificationPlants, oxygenRecyclingPlants, computerFactories];
             buildings = [powerPlants, beings, quarters, laboratories, plantations, mines, refineries, transportFacilities];
-            if (keyIsDown(SHIFT) && carbon >= 4 && silicone >= 3 && aluminium >= 5) {
+            if (keyIsDown(SHIFT) && carbon >= 4 && silicon >= 3 && aluminium >= 5) {
                 buildPreview(buildingCategory, buildingType);
             } else {
                 building = false;
             }
-        } else if (building.includes("ComputerFactory l") && aluminium >= 4 && silicone >= 6 && carbon >= 5 && computerParts >= 12 && !computerFactories[computerFactories.length - 1].encroached) {
+        } else if (building.includes("ComputerFactory l") && aluminium >= 4 && silicon >= 6 && carbon >= 5 && computerParts >= 12 && !computerFactories[computerFactories.length - 1].encroached) {
             aluminium -= 4;
-            silicone -= 6;
+            silicon -= 6;
             carbon -= 5;
             computerParts -= 12;
             computerFactories[computerFactories.length - 1].preview = false;
             computerFactories[computerFactories.length - 1].level = Number(building.substring(building.length - 1));
             refineries = [smelters, waterPurificationPlants, oxygenRecyclingPlants, computerFactories];
             buildings = [powerPlants, beings, quarters, laboratories, plantations, mines, refineries, transportFacilities];
-            if (keyIsDown(SHIFT) && aluminium >= 4 && silicone >= 6 && carbon >= 5 && computerParts >= 12) {
+            if (keyIsDown(SHIFT) && aluminium >= 4 && silicon >= 6 && carbon >= 5 && computerParts >= 12) {
                 buildPreview(buildingCategory, buildingType);
             } else {
                 building = false;
             }
-        } else if (building.includes("FuelRefinery l") && aluminium >= 20 && silicone >= 15 && !fuelRefineries[fuelRefineries.length - 1].encroached) {
+        } else if (building.includes("FuelRefinery l") && aluminium >= 20 && silicon >= 15 && !fuelRefineries[fuelRefineries.length - 1].encroached) {
             aluminium -= 20;
-            silicone -= 15;
+            silicon -= 15;
             fuelRefineries[fuelRefineries.length - 1].preview = false;
             fuelRefineries[fuelRefineries.length - 1].level = Number(building.substring(building.length - 1));
             transportFacilities = [fuelRefineries, launchPads, rockets];
             buildings = [powerPlants, beings, quarters, laboratories, plantations, mines, refineries, transportFacilities];
-            if (keyIsDown(SHIFT) && aluminium >= 20 && silicone >= 15) {
+            if (keyIsDown(SHIFT) && aluminium >= 20 && silicon >= 15) {
                 buildPreview(buildingCategory, buildingType);
             } else {
                 building = false;
@@ -1229,9 +1254,9 @@ document.addEventListener('keydown', function(e) {
                         if (Math.sqrt(Math.pow(buildings[a][b][c].x - mouseX, 2) + Math.pow(buildings[a][b][c].y - mouseY, 2)) < buildings[a][b][c].r && !buildings[a][b][c].preview) {
                             if (buildings[a][b][c].preview) {
                                 building.replace(Number(building.substring(building.length - 1)), Number(building.substring(building.length - 1)) + 1);
-                            } else if (aluminium >= buildings[a][b][c].materials[0] && silicone >= buildings[a][b][c].materials[1] &&  carbon >= buildings[a][b][c].materials[2] && computerParts >= buildings[a][b][c].materials[3]) {
+                            } else if (aluminium >= buildings[a][b][c].materials[0] && silicon >= buildings[a][b][c].materials[1] &&  carbon >= buildings[a][b][c].materials[2] && computerParts >= buildings[a][b][c].materials[3]) {
                                 aluminium -= buildings[a][b][c].materials[0];
-                                silicone -= buildings[a][b][c].materials[1];
+                                silicon -= buildings[a][b][c].materials[1];
                                 carbon -= buildings[a][b][c].materials[2];
                                 computerParts -= buildings[a][b][c].materials[3];
                                 buildings[a][b][c].level += 1;
@@ -1241,7 +1266,7 @@ document.addEventListener('keydown', function(e) {
                                            if (Math.sqrt(Math.pow(buildings[d][e][f].x - buildings[a][b][c].x, 2) + Math.pow(buildings[d][e][f].y - buildings[a][b][c].y, 2)) < buildings[d][e][f].r + buildings[a][b][c].r && !buildings[a][b][c].preview && !buildings[d][e][f].preview && buildings[a][b][c] != buildings[d][e][f] && d != 1) {
                                                 buildings[a][b][c].level -= 1;
                                                 aluminium += buildings[a][b][c].materials[0];
-                                                silicone += buildings[a][b][c].materials[1];
+                                                silicon += buildings[a][b][c].materials[1];
                                                 carbon += buildings[a][b][c].materials[2];
                                                 computerParts += buildings[a][b][c].materials[3];
                                                 break;
@@ -1255,9 +1280,9 @@ document.addEventListener('keydown', function(e) {
                         if (Math.abs(buildings[a][b][c].x - mouseX) < buildings[a][b][c].wx / 2 && Math.abs(buildings[a][b][c].y - mouseY) < buildings[a][b][c].wy / 2 && !buildings[a][b][c].preview) {
                             if (buildings[a][b][c].preview) {
                                 building.replace(Number(building.substring(building.length - 1)), Number(building.substring(building.length - 1)) + 1);
-                            } else if (aluminium >= buildings[a][b][c].materials[0] && silicone >= buildings[a][b][c].materials[1] &&  carbon >= buildings[a][b][c].materials[2] && computerParts >= buildings[a][b][c].materials[3]) {
+                            } else if (aluminium >= buildings[a][b][c].materials[0] && silicon >= buildings[a][b][c].materials[1] &&  carbon >= buildings[a][b][c].materials[2] && computerParts >= buildings[a][b][c].materials[3]) {
                                 aluminium -= buildings[a][b][c].materials[0];
-                                silicone -= buildings[a][b][c].materials[1];
+                                silicon -= buildings[a][b][c].materials[1];
                                 carbon -= buildings[a][b][c].materials[2];
                                 computerParts -= buildings[a][b][c].materials[3];
                                 buildings[a][b][c].level += 1;
@@ -1267,7 +1292,7 @@ document.addEventListener('keydown', function(e) {
                                            if (Math.abs(buildings[a][b][c].x - buildings[d][e][f].x) < buildings[a][b][c].wx / 2 + buildings[d][e][f].wx / 2 && Math.abs(buildings[a][b][c].y - buildings[d][e][f].y) < buildings[a][b][c].wy / 2 + buildings[d][e][f].wy / 2 && !buildings[a][b][c].preview && !buildings[d][e][f].preview && buildings[a][b][c] != buildings[d][e][f]  && d != 1) {
                                                 buildings[a][b][c].level -= 1;
                                                 aluminium += buildings[a][b][c].materials[0];
-                                                silicone += buildings[a][b][c].materials[1];
+                                                silicon += buildings[a][b][c].materials[1];
                                                 carbon += buildings[a][b][c].materials[2];
                                                 computerParts += buildings[a][b][c].materials[3];
                                                break;
@@ -1290,7 +1315,7 @@ document.addEventListener('keydown', function(e) {
         break;
         case 67:
         // c key pressed
-        if (building == "Refineries" && aluminium >= 4 && silicone >= 6 && carbon >= 5 && computerParts >= 12) {
+        if (building == "Refineries" && aluminium >= 4 && silicon >= 6 && carbon >= 5 && computerParts >= 12) {
             building = "ComputerFactory l1";
             buildingCategory = 6;
             buildingType = 3;
@@ -1303,12 +1328,12 @@ document.addEventListener('keydown', function(e) {
         }
         case 70:
         // f key pressed
-        if (building == "Quarters" && aluminium >= 8 && silicone >= 8 && carbon >= 4) {
+        if (building == "Quarters" && aluminium >= 8 && silicon >= 8 && carbon >= 4) {
             building = "FamilyQuarter l1";
             buildingCategory = 2;
             buildingType = 0;
             buildPreview(buildingCategory, buildingType);
-        } else if (building == "TransportFacilities" && aluminium >= 20 && silicone >= 15) {
+        } else if (building == "TransportFacilities" && aluminium >= 20 && silicon >= 15) {
             building = "FuelRefinery l1";
             buildingCategory = 7;
             buildingType = 0;
@@ -1338,7 +1363,7 @@ document.addEventListener('keydown', function(e) {
         }
         case 78:
         // n key pressed
-        if (building == "Energy" && silicone >= 35 && aluminium >= 8 && carbon >= 3 && computerParts >= 10) {
+        if (building == "Energy" && silicon >= 35 && aluminium >= 8 && carbon >= 3 && computerParts >= 10) {
             building = "NuclearPowerPlant l1";
             buildingCategory = 0;
             buildingType = 1;
@@ -1347,7 +1372,7 @@ document.addEventListener('keydown', function(e) {
         break;
         case 79:
         // o key pressed
-        if (building == "Refineries" && carbon >= 4 && silicone >= 3 && aluminium >= 5) {
+        if (building == "Refineries" && carbon >= 4 && silicon >= 3 && aluminium >= 5) {
             building = "OxygenRecyclingPlant l1";
             buildingCategory = 6;
             buildingType = 2;
@@ -1358,7 +1383,7 @@ document.addEventListener('keydown', function(e) {
         // p key pressed
         if (building == "Building") {
             building = "Plantations";
-        } else if (building == "Plantations" && silicone >= 10 && aluminium >= 5 && computerParts >= 1) {
+        } else if (building == "Plantations" && silicon >= 10 && aluminium >= 5 && computerParts >= 1) {
             building = "PotatoFarm l1";
             buildingCategory = 4;
             buildingType = 0;
@@ -1387,17 +1412,17 @@ document.addEventListener('keydown', function(e) {
         break;
         case 83:
         // s key pressed
-        if (building == "Laboratories" && silicone >= 20 && carbon >= 20 && computerParts >= 20) {
+        if (building == "Laboratories" && silicon >= 20 && carbon >= 20 && computerParts >= 20) {
             building = "StandardLaboratory l1";
             buildingCategory = 3;
             buildingType = 0;
             buildPreview(buildingCategory, buildingType);
-        } else if (building == "Refineries" && carbon >= 8 && aluminium >= 4 && silicone >= 1) {
+        } else if (building == "Refineries" && carbon >= 8 && aluminium >= 4 && silicon >= 1) {
             building = "Smelter l1";
             buildingCategory = 6;
             buildingType = 0;
             buildPreview(buildingCategory, buildingType);
-        } else if (building == "Energy" && aluminium >= 5 && silicone >= 15) {
+        } else if (building == "Energy" && aluminium >= 5 && silicon >= 15) {
             building = "SolarFarm l1";
             buildingCategory = 0;
             buildingType = 0;
@@ -1411,7 +1436,7 @@ document.addEventListener('keydown', function(e) {
         }
         case 87:
         // w key pressed
-        if (building == "Refineries" && aluminium >= 10 && silicone >= 5) {
+        if (building == "Refineries" && aluminium >= 10 && silicon >= 5) {
             building = "WaterPurificationPlant l1";
             buildingCategory = 6;
             buildingType = 1;
@@ -1533,7 +1558,7 @@ function clock() {
     for (let i = 0; i < people.length; i++) {
         people[i].science();
     }
-    timeConsume = [eYrs, eWks, eDays, eHrs, eMins, mYrs, mMons, mWks, mDays, mHrs, mMins, cycleTime, researchPoints, metalOre, aluminium, silicone, carbon, computerParts, rocketFuel, contaminatedWaterIce, carbonDioxide, air, oxygen, water, food, nuclearFuel, gridOnline, maxPowerOutput, totalPowerCapacity, totalPowerOutput, grossPowerConsumption, totalPowerConsumption, maxPowerConsumption];
+    timeConsume = [eYrs, eWks, eDays, eHrs, eMins, mYrs, mMons, mWks, mDays, mHrs, mMins, cycleTime, researchPoints, metalOre, aluminium, silicon, carbon, computerParts, rocketFuel, contaminatedWaterIce, carbonDioxide, air, oxygen, water, food, nuclearFuel, gridOnline, maxPowerOutput, totalPowerCapacity, totalPowerOutput, grossPowerConsumption, totalPowerConsumption, maxPowerConsumption];
 }
 
 // set the intervals for consume and tic to occur regularly simultaneously with everything else

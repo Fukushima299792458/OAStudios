@@ -15,7 +15,7 @@ class OxygenRecyclingPlant {
         this.materials = [
             // aluminium
             5,
-            // silicone
+            // silicon
             4,
             // carbon
             3,

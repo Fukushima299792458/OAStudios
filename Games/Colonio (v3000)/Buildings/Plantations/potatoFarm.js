@@ -18,7 +18,7 @@ class PotatoFarm {
         this.materials = [
             // aluminium
             5,
-            // silicone
+            // silicon
             10,
             // carbon
             0,

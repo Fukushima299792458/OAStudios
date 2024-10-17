@@ -15,7 +15,7 @@ class Smelter {
         this.materials = [
             // aluminium
             4,
-            // silicone
+            // silicon
             1,
             // carbon
             8,
@@ -118,7 +118,7 @@ class Smelter {
             if (metalOre > 0.35849386099993391529794307832473 * this.level) {
                 contaminatedWaterIce += (0.35849386099993391529794307832473 * this.level) * 0.00141;
                 oxygen += (0.35849386099993391529794307832473 * this.level) * 466;
-                silicone += (0.35849386099993391529794307832473 * this.level) * 0.277;
+                silicon += (0.35849386099993391529794307832473 * this.level) * 0.277;
                 aluminium += (0.35849386099993391529794307832473 * this.level) * 0.081;
                 carbon += (0.35849386099993391529794307832473 * this.level) * 0.2;
 

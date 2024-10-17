@@ -15,7 +15,7 @@ class FuelRefinery {
         this.materials = [
             // aluminium
             20,
-            // silicone
+            // silicon
             15,
             // carbon
             0,

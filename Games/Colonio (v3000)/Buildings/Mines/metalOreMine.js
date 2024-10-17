@@ -16,7 +16,7 @@ class MetalOreMine {
         this.materials = [
             // aluminium
             4,
-            // silicone
+            // silicon
             0,
             // carbon
             0,

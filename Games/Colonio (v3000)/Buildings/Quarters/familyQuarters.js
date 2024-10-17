@@ -16,7 +16,7 @@ class FamilyQuarter {
         this.materials = [
             // aluminium
             8,
-            // silicone
+            // silicon
             8,
             // carbon
             4,

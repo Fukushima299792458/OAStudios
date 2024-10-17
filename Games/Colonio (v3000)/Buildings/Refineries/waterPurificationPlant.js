@@ -15,7 +15,7 @@ class WaterPurificationPlant {
         this.materials = [
             // aluminium
             10,
-            // silicone
+            // silicon
             5,
             // carbon
             0,

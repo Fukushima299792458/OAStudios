@@ -17,7 +17,7 @@ class SolarFarm {
         this.materials = [
             // aluminium
             5,
-            // silicone
+            // silicon
             15,
             // carbon
             0,

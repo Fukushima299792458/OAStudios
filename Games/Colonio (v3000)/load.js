@@ -142,7 +142,7 @@ let researchPoints = 0;
 // variables to keep track of the different materials 
 let metalOre = 0;
 let aluminium = 80;
-let silicone = 300;
+let silicon = 300;
 let carbon = 240;
 let computerParts = 230;
 let rocketFuel = 100;
@@ -232,6 +232,14 @@ function setup() {
 }
 
 function draw() {
+    canvas = createCanvas(innerWidth, innerHeight - 4);
+
+    width = canvas.width;
+    height = canvas.height;
+
+    canvas.id("canvas");
+    canvas = document.getElementById("canvas");
+    context = canvas.getContext('2d');
     // reset the background colour to the desired colour and clear past frames
     background(253, 166, 0);
     // change background colour based on weather conditions
@@ -305,77 +313,90 @@ function draw() {
         }
     }
 
-
     // display the total and major stats for the palyer with expanded wiew on hover
     context.fillStyle = "black";
     context.font = `${height / 25}px Verdana`;
     stroke(0, 0, 0);
+    context.textAlign = "center";
 
     if (mouseY < height / 15) {
-        if (mouseX < 3 * width / 11) {
-            context.fillText(`Total Pwr Consump: ${Math.round(totalPowerConsumption)} Kw`, 0, 2 * height / 25, 1 * width / 4);
-            context.fillText(`Total Pwr O/P: ${Math.round(totalPowerOutput)} Kw`, 0, 3 * height / 25, 1 * width / 4);
-            context.fillText(`Total Pwr Cap: ${totalPowerCapacity} Kw`, 0, 4 * height / 25, 1 * width / 4);
-            context.fillText(`Max Pwr Cap: ${maxPowerOutput} Kw`, 0, 5 * height / 25, 1 * width / 4);
-            context.fillText(`|`, width / 4, 1 * height / 25);
-            context.fillText(`|`, width / 4, 2 * height / 25);
-            context.fillText(`|`, width / 4, 3 * height / 25);
-            context.fillText(`|`, width / 4, 4 * height / 25);
-            context.fillText(`|`, width / 4, 5 * height / 25);
-        } else if (mouseX < 5 * width / 11) {
-            context.fillText(`Actv Scientists: ${actvScientists}`, 3 * width / 11, 2 * height / 25, 1 * width / 6);
-            context.fillText(`Idle: ${idle}`, 3 * width / 11, 3 * height / 25, 1 * width / 6);
-            context.fillText(`Children: ${children}`, 3 * width / 11, 4 * height / 25, 1 * width / 6);
-            context.fillText(`Maternity: ${maternity}`, 3 * width / 11, 5 * height / 25, 1 * width / 6);
-            context.fillText(`|`, 5 * width / 11, 1 * height / 25);
-            context.fillText(`|`, 5 * width / 11, 2 * height / 25);
-            context.fillText(`|`, 5 * width / 11, 3 * height / 25);
-            context.fillText(`|`, 5 * width / 11, 4 * height / 25);
-            context.fillText(`|`, 5 * width / 11, 5 * height / 25);
-        } else if (mouseX < 13 * width / 19) {
-            context.fillText(`Metal Ore: ${Math.round(metalOre)} mt`, 9 * width / 19, 2 * height / 25, 4 * width / 19);
-            context.fillText(`Aluminium: ${Math.round(aluminium)} mt`, 9 * width / 19, 3 * height / 25, 4 * width / 19);
-            context.fillText(`Silicone: ${Math.round(silicone)} mt`, 9 * width / 19, 4 * height / 25, 4 * width / 19);
-            context.fillText(`Carbon: ${Math.round(carbon)} mt`, 9 * width / 19, 5 * height / 25, 4 * width / 19);
-            context.fillText(`Computer Parts: ${computerParts}`, 9 * width / 19, 6 * height / 25, 4 * width / 19);
-            context.fillText(`|`, 13 * width / 19, 1 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 2 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 3 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 4 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 5 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 6 * height / 25); 
+        if (mouseX < width / 5) {
+            context.fillText(`Total Pwr Consump: ${Math.round(totalPowerConsumption)} Kw`, width / 10, 2 * height / 25, width / 5);
+            context.fillText(`Total Pwr O/P: ${Math.round(totalPowerOutput)} Kw`, width / 10, 3 * height / 25, width / 5);
+            context.fillText(`Total Pwr Cap: ${totalPowerCapacity} Kw`, width / 10, 4 * height / 25, width / 5);
+            context.fillText(`Max Pwr Cap: ${maxPowerOutput} Kw`, width / 10, 5 * height / 25, width / 5);
+            context.fillText(`|`, width / 5, 1 * height / 25);
+            context.fillText(`|`, width / 5, 2 * height / 25);
+            context.fillText(`|`, width / 5, 3 * height / 25);
+            context.fillText(`|`, width / 5, 4 * height / 25);
+            context.fillText(`|`, width / 5, 5 * height / 25);
+        } else if (mouseX < width / 5 + width / 7) {
+            context.fillText(`Actv Scientists: ${actvScientists}`, width / 5 + width / 14, 2 * height / 25, width / 7);
+            context.fillText(`Idle: ${idle}`, width / 5 + width / 14, 3 * height / 25, width / 7);
+            context.fillText(`Children: ${children}`, width / 5 + width / 14, 4 * height / 25, width / 7);
+            context.fillText(`Maternity: ${maternity}`, width / 5 + width / 14, 5 * height / 25, width / 7);
+
+            context.fillText(`|`, width / 5, 1 * height / 25);
+            context.fillText(`|`, width / 5, 2 * height / 25);
+            context.fillText(`|`, width / 5, 3 * height / 25);
+            context.fillText(`|`, width / 5, 4 * height / 25);
+            context.fillText(`|`, width / 5, 5 * height / 25);
+
+            context.fillText(`|`, width / 5 + width / 7, 1 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7, 2 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7, 3 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7, 4 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7, 5 * height / 25);
+        } else if (mouseX < width / 5 + width / 7 + 7 * width / 19) {
+            context.fillText(`Metal Ore: ${Math.round(metalOre)} mt`, width / 5 + width / 7 + 7 * width / 38, 2 * height / 25, 7 * width / 19);
+            context.fillText(`Aluminium: ${Math.round(aluminium)} mt`, width / 5 + width / 7 + 7 * width / 38, 3 * height / 25, 7 * width / 19);
+            context.fillText(`silicon: ${Math.round(silicon)} mt`, width / 5 + width / 7 + 7 * width / 38, 4 * height / 25, 7 * width / 19);
+            context.fillText(`Carbon: ${Math.round(carbon)} mt`, width / 5 + width / 7 + 7 * width / 38, 5 * height / 25, 7 * width / 19);
+            context.fillText(`Computer Parts: ${computerParts}`, width / 5 + width / 7 + 7 * width / 38, 6 * height / 25, 7 * width / 19);
+
+            context.fillText(`|`, width / 5 + width / 7, 1 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7, 2 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7, 3 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7, 4 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7, 5 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7, 6 * height / 25);
+
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 1 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 2 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 3 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 4 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 5 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 6 * height / 25); 
         } else {
-            context.textAlign = "end";
-            context.fillText(`Air: ${Math.round(air)} mt`, width, 2 * height / 25, 5 * width / 19);
-            context.fillText(`Oxygen: ${Math.round(oxygen)} kg`, width, 3 * height / 25, 5 * width / 19);
-            context.fillText(`Water: ${Math.round(water)} mt`, width, 4 * height / 25, 5 * width / 19);
-            context.fillText(`Food: ${Math.round(food)} kg`, width, 5 * height / 25, 5 * width / 19);
-            context.fillText(`Nuclear Fuel: ${Math.round(nuclearFuel)} kg`, width, 6 * height / 25, 5 * width / 19);
-            context.fillText(`Contaminated Water Ice: ${Math.round(contaminatedWaterIce)} mt`, width, 7 * height / 25, 5 * width / 19);
-            context.fillText(`Carbon Dioxide: ${Math.round(carbonDioxide)} kg`, width, 8 * height / 25, 5 * width / 19);
-            context.fillText(`Rocket Fuel: ${rocketFuel} mt`, width, 9 * height / 25, 5 * width / 19);
-            context.textAlign = "start";
-            context.fillText(`|`, 13 * width / 19, 1 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 2 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 3 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 4 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 5 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 6 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 6.99 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 7.99 * height / 25);
-            context.fillText(`|`, 13 * width / 19, 8.98 * height / 25);
+            // context.textAlign = "end";
+            context.fillText(`Air: ${Math.round(air)} mt`, width / 5 + width / 7 + 7 * width / 19 + 96 * width / 665, 2 * height / 25, 192 * width / 665);
+            context.fillText(`Oxygen: ${Math.round(oxygen)} kg`, width / 5 + width / 7 + 7 * width / 19 + 96 * width / 665, 3 * height / 25, 192 * width / 665);
+            context.fillText(`Water: ${Math.round(water)} mt`, width / 5 + width / 7 + 7 * width / 19 + 96 * width / 665, 4 * height / 25, 192 * width / 665);
+            context.fillText(`Food: ${Math.round(food)} kg`, width / 5 + width / 7 + 7 * width / 19 + 96 * width / 665, 5 * height / 25, 192 * width / 665);
+            context.fillText(`Nuclear Fuel: ${Math.round(nuclearFuel)} kg`, width / 5 + width / 7 + 7 * width / 19 + 96 * width / 665, 6 * height / 25, 192 * width / 665);
+            context.fillText(`Contaminated Water Ice: ${Math.round(contaminatedWaterIce)} mt`, width / 5 + width / 7 + 7 * width / 19 + 96 * width / 665, 7 * height / 25, 192 * width / 665);
+            context.fillText(`Carbon Dioxide: ${Math.round(carbonDioxide)} kg`, width / 5 + width / 7 + 7 * width / 19 + 96 * width / 665, 8 * height / 25, 192 * width / 665);
+            context.fillText(`Rocket Fuel: ${rocketFuel} mt`, width / 5 + width / 7 + 7 * width / 19 + 96 * width / 665, 9 * height / 25, 192 * width / 665);
+            // context.textAlign = "start";
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 1 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 2 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 3 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 4 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 5 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 6 * height / 25); 
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 7 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 8 * height / 25);
+            context.fillText(`|`, width / 5 + width / 7 + 7 * width / 19, 9 * height / 25);
         }
     }
-    // diplay most important information at the top
-    context.fillText(`Power: ${Math.round(totalPowerConsumption)}/${totalPowerCapacity} Kw`, 0, height / 25, 1 * width / 4);
-    context.fillText(`Colonists: ${colonists}`, 3 * width / 11, 1 * height / 25, 2 * width / 5);
-    context.fillText(`Materials (ore/Al/Si): ${Math.round(metalOre)}/${Math.round(aluminium)}/${Math.round(silicone)} mt`, 9 * width / 19, 1 * height / 25, 4 * width / 19);
+    // display most important information at the top
+    context.fillText(`Power: ${Math.round(totalPowerConsumption)}/${totalPowerCapacity} Kw`, width / 10, 1 * height / 25, width / 5);
+    context.fillText(`Colonists: ${colonists}`, width / 5 + width / 14, 1 * height / 25, width / 7);
+    context.fillText(`Materials (ore/Al/Si): ${Math.round(metalOre)}/${Math.round(aluminium)}/${Math.round(silicon)} mt`, width / 5 + width / 7 + 7 * width / 38, 1 * height / 25, 7 * width / 19);
+    context.fillText(`Consumables: ${Math.round(oxygen)}/${Math.round(water)}/${Math.round(food)}`, width / 5 + width / 7 + 7 * width / 19 + 96 * width / 665, 1 * height / 25, 192 * width / 665);
     
-    // give consumables special treatment because right up agaist other side
+    // put both earth and mars time down in the corner to help the player keep track of time passed and time of day but hide if the build menu is obstructing it
     context.textAlign = "end";
-    context.fillText(`Consumables: ${Math.round(oxygen)}/${Math.round(water)}/${Math.round(food)}`, width, 1 * height / 25, 5 * width / 19);
-    
-    // put both earth and mars time down in the cornerto help the player keep track of time passed and time of day but hide if the build menu is obstructing it
     if (!building) {
         context.fillText(`Earth Time (yr/wks/days/hrs:mins): ${eYrs}/${eWks}/${eDays}/${eHrs}:${eMins}`, width - 5, height - (4 + height / 25), width);
         // max 18/42/1/15/36

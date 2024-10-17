@@ -15,7 +15,7 @@ class StandardLaboratory {
         this.materials = [
             // aluminium
             0,
-            // silicone
+            // silicon
             20,
             // carbon
             20,

@@ -16,7 +16,7 @@ class ComputerFactory {
         this.materials = [
             // aluminium
             4,
-            // silicone
+            // silicon
             6,
             // carbon
             5,
@@ -115,12 +115,12 @@ class ComputerFactory {
     }
 
     consumeFuel() {
-        // consumes energy, carbon, silicone and carbon to produce computer parts
+        // consumes energy, carbon, silicon and carbon to produce computer parts
         if (this.active && gridOnline) {
-            if (carbon > 1 * this.level && silicone > 1 * this.level && aluminium > 8 * this.level) {
+            if (carbon > 1 * this.level && silicon > 1 * this.level && aluminium > 8 * this.level) {
                 computerParts += 1 * this.level;
                 carbon -= 1 * this.level;
-                silicone -= 1 * this.level;
+                silicon -= 1 * this.level;
                 aluminium -= 8 * this.level;
                 this.currentMaxProduction = this.maxProduction;
                 this.consumption = this.maxConsumption;

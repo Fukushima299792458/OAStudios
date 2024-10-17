@@ -15,7 +15,7 @@ class LaunchPad {
         this.materials = [
             // aluminium
             5,
-            // silicone
+            // silicon
             0,
             // carbon
             0,
