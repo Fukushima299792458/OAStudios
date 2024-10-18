@@ -1,0 +1,15 @@
+{
+    "name": "Arcanum Inanis; Mens Simulata",
+    "short_name": "Arcanum Inanis; Mens Simulata",
+    "start_url": "index.html",
+    "display": "fullscreen",
+    "background_color": "#231F20",
+    "theme_color": "#000",
+    "description": "A sci-fi game about aliens and the simulation hypothesis. ",
+    "icons": [{
+      "src": "TemplateData/icons/unity-logo-dark.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }]
+  }
