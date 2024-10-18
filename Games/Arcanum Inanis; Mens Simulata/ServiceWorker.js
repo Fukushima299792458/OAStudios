@@ -2,7 +2,6 @@ const cacheName = "OAStudios-Arcanum Inanis; Mens Simulata-1.0";
 const contentToCache = [
     "Build/Arcanum Inanis; Mens Simulata.loader.js",
     "Build/Arcanum Inanis; Mens Simulata.framework.js",
-    "Build/Arcanum Inanis; Mens Simulata.worker.js",
     "Build/Arcanum Inanis; Mens Simulata.data",
     "Build/Arcanum Inanis; Mens Simulata.wasm",
     "TemplateData/style.css"
